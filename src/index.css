@@ -69,3 +69,7 @@ select {
   padding: 0;
   font: inherit;
 }
+
+#root {
+  height: 100%;
+}
