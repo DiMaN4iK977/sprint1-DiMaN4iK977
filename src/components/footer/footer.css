@@ -1,0 +1,35 @@
+
+  
+.my-footer {
+    width: 100%;
+    /* height: 56px; */
+    padding: 16px 0;
+    border-top: 1px solid #BFC4C9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: -56px; */
+    margin-top: 62px;
+  }
+
+.footer-title {
+  font-size: 16px;
+}
+
+  .footer-icon {
+    display: flex;
+    width: 168px;
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 320px) {
+    .my-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
+    }
+
+    .my-footer > .footer-title {
+      text-align: center;
+    }
+  }

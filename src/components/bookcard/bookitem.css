@@ -1,0 +1,104 @@
+.bookshell-item {
+    display: flex;
+    width: 825px;
+    flex-wrap: wrap;
+    gap: 21.5px;
+ }
+
+.book-item {
+    width: 190px;
+    /* margin-bottom: 40px; */
+}
+
+.wrapper {
+    padding:  8px;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+    border-radius: 10px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-flow: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+
+
+.book-imageitem {
+    width: 174px;
+    /* height: 242px; */
+    margin: 0 auto;
+}
+
+.book-imageitem > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #A7A7A7;
+}
+
+.book-name {
+    font-weight: 600;
+    /* height: 54px; */
+}
+
+.book-star {
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 22px;
+    color: #a7a7a7;
+}
+
+.book-star > div {
+    display: flex;
+    gap: 6px;
+}
+
+.book-author {
+    margin-top: 8px;
+    margin-bottom: 28px;
+    color: #a7a7a7;
+    /* align-items: center; */
+}
+
+.my-button {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .bookshell-item {
+        gap: 32px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .book-item {
+        /* gap: 32px; */
+        width: 100%;
+    }
+
+    .book-imageitem {
+        margin: 0 auto;
+    }
+
+    .navBar {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    .my-button {
+        margin-top: 0;
+    }
+
+    .book-author {
+        font-size: 12px;
+    }
+
+    .book-star {
+        margin-bottom: 16px;
+    }
+
+    .wrapper {
+        padding-bottom: 16px;
+    }
+}

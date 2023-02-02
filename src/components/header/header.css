@@ -1,0 +1,93 @@
+
+ 
+ .header {
+    height: 58px;
+    margin-top: 32px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    /* background-color: red; */
+    align-items: center;
+  }
+
+  .logo {
+    height: 40px;
+    width: 165px;
+    margin-right: 120px;
+    display: flex;
+  }
+
+  .rectangle {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #6E76F1;
+
+  }
+
+  .image {
+    position: relative;
+    left: 3.61%;
+    right: 75.76%;
+    top: 15.25%;
+    bottom: 15.28%; 
+    width: 34.04px;
+    width: 40px;
+    height: 27.79px;
+  }
+
+  .name { 
+    width: 111px;
+    margin-left: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  } 
+
+  .library {
+    width: 210px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.1px;
+  }
+  
+  .userName {
+    margin-left: 435px;
+    margin-right: 16px;
+    width: 106px;
+    font-size: 16px;
+  }
+
+  .imageUser {
+    width: 58px;
+    height: 58px;
+  }
+
+  .burger-menu {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .burger-menu {
+      display: block;
+      margin-left: 64px;
+      margin-right: 24px;
+    }
+    .logo, .userName, .userPhoto {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .burger-menu {
+      display: block;
+      margin-left: 0;
+      margin-right: 24px;
+    }
+
+    .header {
+      margin: 0;
+    }
+  }
