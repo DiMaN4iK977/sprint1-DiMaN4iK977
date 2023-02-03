@@ -1,6 +1,7 @@
 import '../content/content.css'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import toggleBtn from '../../pictures/Vector (Stroke).png'
 
 export function TypebarItem({item}) {
     // const = useState[isActive, ]
@@ -8,7 +9,11 @@ export function TypebarItem({item}) {
     if(item.children) { 
         return (
         <NavLink className='title' to={item.path} key={item.id}>
-                    <span className="category">{item.name}</span>
+                    <div className="category">
+                        <span>{item.name}</span>
+                        <img src={toggleBtn} alt='img'/>
+                        {/* <i className='bi-chevron-down toggle-btn' /> */}
+                        </div>
                          <div className="category-many">
                             {item.children.map(child => (
                                 <TypebarItem key={child.id} item={child} /> 

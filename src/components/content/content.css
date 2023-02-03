@@ -17,11 +17,8 @@
     width: 825px;
     height: 38px;
     margin-bottom: 32px;
-    /* background-color: aquamarine; */
     display: flex;
     align-items: center;
-    margin-left: 6px;
-    /* background-color: aqua; */
     margin-top: 47px;
     justify-content: space-between;
 }
@@ -103,7 +100,7 @@
     line-height: 24px;
     font-weight: 400;
     color: #363636;
-    padding: 8px 0;
+    /* padding: 8px 0; */
 }
 
 
@@ -149,6 +146,10 @@
 
  .category {
     margin-top: 42px;
+    display: inline-flex;
+    /* display: flex; */
+    /* flex-direction: row; */
+    justify-content: space-between;
 }
 
 .category:hover {
@@ -217,6 +218,10 @@
     text-decoration: none;
 }
 
+.title.active > .category  > img {
+    display: inline-block;
+}
+
 .content-button {
     min-width: 38px;
     height: 38px;
@@ -231,6 +236,11 @@
     color: transparent;
 }
 
+.category > img {
+    display: none;
+    width: 14px;
+    height: 8px;
+}
 
 
 @media screen and (max-width: 768px) {

@@ -18,5 +18,5 @@ export const categoriesData =
             {id: 15, name: 'Юмористическая литература', count: 8, path: '/books/humor'}]
         },
         {id: 22, name: 'Правила пользования', path: "/root/", children: []},
-        {id: 23, name: 'Договор оферты', path: "/contract",  children: []}
+        {id: 23, name: 'Договор оферты', path: "/contract", children: []}
     ]
