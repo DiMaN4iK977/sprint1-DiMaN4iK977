@@ -4,8 +4,9 @@ import { useState } from 'react'
 import toggleBtn from '../../pictures/Vector (Stroke).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (1).png'
 
-export function TypebarItem({item}) {
-    const [open, setOpen] = useState(true)
+export function TypebarItem({item, open, setOpen}) {
+    // const [open, setOpen] = useState(true)
+    // console.log(open);
 
     if(item.children) { 
         return (
@@ -17,7 +18,7 @@ export function TypebarItem({item}) {
                     </div>
                         <div className={open ? "category-many open" : "category-many"}>
                             {item.children.map(child => (
-                                <TypebarItem key={child.id} item={child} /> 
+                                <TypebarItem open={open} setOpen={setOpen} key={child.id} item={child} /> 
                             ))} 
                         </div>
         </div>

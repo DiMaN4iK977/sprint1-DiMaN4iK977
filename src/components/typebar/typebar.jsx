@@ -4,10 +4,11 @@ import { categoriesData } from '../../data/typebardata'
 import '../content/content.css'
 import { TypebarItem } from './typebaritem'
 
-export const Typebar = () => (
+export const Typebar = ({open, setOpen}) => 
+  // console.log(open);
+  (
             categoriesData.map(item => (
-                    <TypebarItem key={item.id} item={item} />
+                    <TypebarItem open={open} setOpen={setOpen} key={item.id} item={item} />
                     )
-        
   )
 )

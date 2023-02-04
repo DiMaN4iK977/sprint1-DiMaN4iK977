@@ -5,7 +5,6 @@ import { MyButton } from './button'
 
 export function BookItem({item}) {
     const location = useLocation()
-    console.log(location);
    
     return (
     <NavLink to={`${location.pathname}/${item.id}`} className='book-item' data-test-id='card'>

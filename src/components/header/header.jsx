@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './header.css'
 import { NavLink } from 'react-router-dom'
 
@@ -5,10 +6,12 @@ import logo from '../../pictures/Vector.png'
 import avatar from '../../pictures/avatar.png'
 import Cleverland from '../../pictures/Cleverland.png'
 import Burger from '../../pictures/Icon_Action (2).png'
+import Crist from '../../pictures/Icon_Action (3).png'
 
-export const MyHeader = () => (
+export const MyHeader = ({state, setState}) => ( 
+
         <div className='header'>
-            <img className='burger-menu'src={Burger} alt='img'/>
+            <div role='button' tabIndex={0} onClick={() => setState(!state)} onKeyDown={() => {}}><img className='burger-menu'  src={state ? Burger : Crist} alt='img'/></div>
             <NavLink to='/books/all' className='logo'>
                 <div className='rectangle'>
                     <img className='image' src={logo} alt='img' />
@@ -21,4 +24,4 @@ export const MyHeader = () => (
                 <img className='imageUser' src={avatar} alt='img' />
             </div>
         </div>
-);
+    );
