@@ -1,14 +1,10 @@
-
-  
-.my-footer {
+  .my-footer {
     width: 100%;
-    /* height: 56px; */
     padding: 16px 0;
     border-top: 1px solid #BFC4C9;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: -56px; */
     margin-top: 62px;
   }
 

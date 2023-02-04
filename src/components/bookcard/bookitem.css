@@ -17,6 +17,7 @@
     padding-bottom: 24px;
     display: flex;
     flex-flow: column;
+    height: 468px;
     /* justify-content: center; */
     /* align-items: center; */
 }
@@ -39,6 +40,8 @@
 .book-name {
     font-weight: 600;
     /* height: 54px; */
+    margin: auto 0;
+
 }
 
 .book-star {

@@ -2,29 +2,30 @@ import '../content/content.css'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import toggleBtn from '../../pictures/Vector (Stroke).png'
+import toggleBtnDown from '../../pictures/Vector (Stroke) (1).png'
 
 export function TypebarItem({item}) {
-    // const = useState[isActive, ]
+    const [open, setOpen] = useState(true)
 
     if(item.children) { 
         return (
-        <NavLink className='title' to={item.path} key={item.id}>
-                    <div className="category">
-                        <span>{item.name}</span>
-                        <img src={toggleBtn} alt='img'/>
-                        {/* <i className='bi-chevron-down toggle-btn' /> */}
-                        </div>
-                         <div className="category-many">
+        <div>
+                    <div className='category'>
+                        <NavLink className="category-book" to={item.path} key={item.id}>{item.name}
+                        <div role='button' tabIndex={0} onClick={() => setOpen(!open)} onKeyDown={() => {}}><img src={open ? toggleBtnDown : toggleBtn} alt='img'/></div>
+                        </NavLink>
+                    </div>
+                        <div className={open ? "category-many open" : "category-many"}>
                             {item.children.map(child => (
                                 <TypebarItem key={child.id} item={child} /> 
                             ))} 
                         </div>
-        </NavLink>
+        </div>
         )              
     }
         return (
-                <NavLink to={item.path} key={item.id}  className='category-book'>
-                    <span className='categore-name'>{item.name}</span>
+                <NavLink to={item.path} key={item.id} className='category-book'>
+                    <span className='category-name'>{item.name}</span>
                     <span className='count'>{item.count}</span>
                 </NavLink>  
         )

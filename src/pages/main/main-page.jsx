@@ -22,6 +22,6 @@ return (
             </Route>
             <Route path='/books/:categories/:id' element={<BookPage/>}/>
         </Routes>
-        </div>
+    </div>
 )
 }
