@@ -1,6 +1,6 @@
 export const categoriesData = 
     [
-        {id: 21, name: 'Витрина книг', path: "/books", children: [
+        {id: 21, name: 'Витрина книг', path: "/books",  children: [
             {id: 1, name: 'Все книги', path: "/books/all"},
             {id: 2, name: 'Бизнес книги', count: 14, path: "/books/business"},
             {id: 3, name: 'Детективы', count: 8, path: "/books/detective"},

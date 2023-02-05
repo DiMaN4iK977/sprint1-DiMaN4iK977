@@ -1,4 +1,6 @@
 import { useLocation, useParams } from "react-router-dom"
+import { useState } from "react";
+
 import { MyHeader } from "../../components/header/header";
 import { BookData } from "../../data/bookdata";
 import './book-page.css'
@@ -10,8 +12,11 @@ import Star from '../../pictures/Star 1.png'
 import UserAvatar from '../../pictures/Ellipse 10.png'
 import { MyFooter } from "../../components/footer/footer";
 import { Typebar } from "../../components/typebar/typebar";
+import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
+import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
 
-export const BookPage = () => {
+
+export const BookPage = ({opened, setOpen, open}) => {
     const params = useParams()
     // console.log(Icon);
     // console.log(BookData[params.id]);
@@ -19,11 +24,19 @@ export const BookPage = () => {
     const discription = 'Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время? Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.'
     const userDescription = 'Учитывая ключевые сценарии поведения, курс на социально-ориентированный национальный проект не оставляет шанса для анализа существующих паттернов поведения. Для современного мира внедрение современных методик предоставляет широкие возможности для позиций, занимаемых участниками в отношении поставленных задач. Как уже неоднократно упомянуто, сделанные на базе интернет-аналитики выводы будут в равной степени предоставлены сами себе. Вот вам яркий пример современных тенденций — глубокий уровень погружения создаёт предпосылки для своевременного выполнения сверхзадачи. И нет сомнений, что акционеры крупнейших компаний, инициированные исключительно синтетически, превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.'
     
-    // console.log(opened);
     const booklist = `Бизнес книги / ${BookData[params.id-1].name}`
 
+    const [open2, setOpen2] = useState(true)
     return (
         <div>
+            <div className={opened ? 'menus' : 'menu opened'}>
+                <Typebar open={open} setOpen={setOpen} />
+                <div className='menu-for-divices'>
+                    <div className='profile'>Профиль</div>
+                    <div className='in-out'>Выход</div>
+                </div>
+            </div>
+            
             <div className="book-list">{booklist}</div>    
             <div className='book-page'>
                 <div className="book-main">
@@ -93,8 +106,8 @@ export const BookPage = () => {
                     </div>
                 </div>
                 <div className="testimonials">
-                    <div className="book-title">Отзывы<div style={{color: '#A7a7a7', display: "flex", marginLeft: '6px', alignItems: 'center'}}>2</div></div>
-                    <div className="testimonials-block">
+                    <div className="book-title">Отзывы<div style={{color: '#A7a7a7', display: "flex", marginLeft: '6px', alignItems: 'center'}}>2</div><div onKeyDown={() => {}} onClick={() => setOpen2(!open2)} style={{marginLeft: '29px'}} role='button' tabIndex={0}><img src={open2 ? toggleBtn : toggleBtnDown} alt='img'/></div></div>
+                    <div className={open2 ? "testimonials-block" : "testimonials-block open"}>
                         <div className="feedback">
                             <div className="user-testimonials">
                                 <div className="user-avatar"><img className="avatar" src={UserAvatar} alt='img'/></div>
@@ -131,7 +144,7 @@ export const BookPage = () => {
                 </div>
             </div>
             </div>
-            <MyFooter />
+            {/* <MyFooter /> */}
         </div>
 
     

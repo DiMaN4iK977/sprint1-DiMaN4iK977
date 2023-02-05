@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import './content.css'
@@ -13,14 +13,16 @@ import buttontable from '../../pictures/button icon (2).png'
 import buttonlist from '../../pictures/button icon (3).png'
 
 
-export const Content = ({list, setList}) => 
-    (
+export const Content = ({list, setList}) => {
+    const [open, setOpen] = useState(false)
+
+    return (
         <div className='content'>
             <div className='navBar'>
                 <div>
                     <div className='search'>
-                        <img className='searchIcon' src={iconAction} alt="img" />
-                        <input className='search-txt' type="text" placeholder='Поиск книги или автора...' />
+                        <div role='button' tabIndex={0} onKeyDown={() => {}} onClick={() => setOpen(!open)}><img className='searchIcon' src={iconAction} alt="img" /></div>
+                        <input className={open ? 'search-txt': 'search-txt open'} type="text" placeholder='Поиск книги или автора...' />
                     </div>
                     <div className='filter'>
                         <img className='filterIcon' src={iconAction2} alt="img" />
@@ -32,6 +34,7 @@ export const Content = ({list, setList}) =>
                     <div className='content-button' data-test-id='button-menu-view-list' role='button' onKeyDown={() => {}} tabIndex={0} onClick={() => setList(false)}><img src={list ? buttonIcon2 : buttonlist} alt='img'/></div>
                 </div>
             </div>
-                {list ? <Booktable/> : <List/>}
-        </div>
+               {list ? <Booktable/> : <List/>}
+    </div>
 )
+   }
