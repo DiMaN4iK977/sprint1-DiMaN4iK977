@@ -6,7 +6,6 @@ import { TypebarItem } from './typebaritem'
 
 export const Typebar = ({open, setOpen}) => {
   const param =useParams()
-  console.log(param);
   
  return (
             categoriesData.map(item => (

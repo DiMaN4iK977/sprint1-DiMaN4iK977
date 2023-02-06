@@ -5,7 +5,7 @@ import { MyHeader } from "../../components/header/header";
 import { BookData } from "../../data/bookdata";
 import './book-page.css'
 import Icon from '../../pictures/Icon_Chevron.png'
-import bookimage from '../../pictures/image (3).png'
+// import bookimage from '../../pictures/image (3).png'
 import { MyButton } from "../../components/bookcard/button";
 import iconStar from '../../pictures/Star 1 (2).png'
 import Star from '../../pictures/Star 1.png'
@@ -14,6 +14,10 @@ import { MyFooter } from "../../components/footer/footer";
 import { Typebar } from "../../components/typebar/typebar";
 import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
+import bookimage from '../../pictures/image (5).png'
+import { App } from "./imageblock";
+import { noImage } from "./noimage";
+
 
 
 export const BookPage = ({opened, setOpen, open}) => {
@@ -25,8 +29,31 @@ export const BookPage = ({opened, setOpen, open}) => {
     const userDescription = 'Учитывая ключевые сценарии поведения, курс на социально-ориентированный национальный проект не оставляет шанса для анализа существующих паттернов поведения. Для современного мира внедрение современных методик предоставляет широкие возможности для позиций, занимаемых участниками в отношении поставленных задач. Как уже неоднократно упомянуто, сделанные на базе интернет-аналитики выводы будут в равной степени предоставлены сами себе. Вот вам яркий пример современных тенденций — глубокий уровень погружения создаёт предпосылки для своевременного выполнения сверхзадачи. И нет сомнений, что акционеры крупнейших компаний, инициированные исключительно синтетически, превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.'
     
     const booklist = `Бизнес книги / ${BookData[params.id-1].name}`
+    // console.log(BookData[params.id-1].image);
+    // console.log(Ob);
+    const [open2, setOpen2] = useState(true) 
+    // console.log(images);
 
-    const [open2, setOpen2] = useState(true)
+    function imageBlock(item) {
+        let picture =''
+
+        if(Object.prototype.hasOwnProperty.call(item, 'image')) {
+            picture = (item.image[0] !== '/') ? item.image[0].bookimage : item.image 
+            // images = item.image[0]
+        } 
+        
+
+        if(item.image === undefined) {
+            picture = bookimage
+        } 
+
+        return picture
+    }
+    
+
+    
+
+    
     return (
         <div>
             <div className={opened ? 'menus' : 'menu opened'}>
@@ -40,7 +67,12 @@ export const BookPage = ({opened, setOpen, open}) => {
             <div className="book-list">{booklist}</div>    
             <div className='book-page'>
                 <div className="book-main">
-                    <div className="book-image">{BookData[params.id-1].image}</div>
+                    <div className="book-image">
+                        <img src={imageBlock(BookData[params.id-1])} alt=''/>
+                        <div className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image-block" : 'image-block closed' }>
+                            {App(params.id-1)}
+                        </div>
+                    </div>
                     <div className="about">
                         <div className="name-book">{BookData[params.id-1].name}</div>
                         <div className="author">{BookData[params.id-1].author}</div>
