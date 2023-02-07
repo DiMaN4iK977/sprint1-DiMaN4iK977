@@ -33,25 +33,23 @@ export const BookPage = ({opened, setOpen, open}) => {
     // console.log(Ob);
     const [open2, setOpen2] = useState(true) 
     // console.log(images);
+    const [image, setImage] = useState('')
 
-    function imageBlock(item) {
-        let picture =''
+    let img = ''
 
-        if(Object.prototype.hasOwnProperty.call(item, 'image')) {
-            picture = (item.image[0] !== '/') ? item.image[0].bookimage : item.image 
-            // images = item.image[0]
-        } 
-        
-
-        if(item.image === undefined) {
-            picture = bookimage
-        } 
-
-        return picture
+    if(BookData[params.id-1].image === undefined) {
+        img = bookimage
+        // setImage(bookimage)
+    } else 
+    if(BookData[params.id-1].image[0] !== '/' && BookData[params.id-1].image) {
+        [img] = BookData[params.id-1].image
+    } else {
+        img =  BookData[params.id-1].image
+        // setImage(bookimage)
     }
     
-
-    
+    const picture =''
+    // console.log(image);
 
     
     return (
@@ -68,9 +66,10 @@ export const BookPage = ({opened, setOpen, open}) => {
             <div className='book-page'>
                 <div className="book-main">
                     <div className="book-image">
-                        <img src={imageBlock(BookData[params.id-1])} alt=''/>
-                        <div className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image-block" : 'image-block closed' }>
-                            {App(params.id-1)}
+                        <img src={image} alt=''/>
+                        <div className="image-block">
+                            {/* {App(params.id-1, img)} */}
+                            <App id={params.id-1} image={img} changeImage={image => setImage(image)} className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image open" : 'image closed' }/>
                         </div>
                     </div>
                     <div className="about">
