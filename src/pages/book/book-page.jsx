@@ -16,7 +16,7 @@ import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
 import bookimage from '../../pictures/image (5).png'
 import { App } from "./imageblock";
-import { noImage } from "./noimage";
+import { NoImage } from "./noimage";
 
 
 
@@ -34,9 +34,12 @@ export const BookPage = ({opened, setOpen, open}) => {
     const [open2, setOpen2] = useState(true) 
     // console.log(images);
     const [image, setImage] = useState('')
+    // const [image, setImage] = useState('')
+
+
+    // console.log(document.body.clientWidth);
 
     let img = ''
-
     if(BookData[params.id-1].image === undefined) {
         img = bookimage
         // setImage(bookimage)
@@ -48,9 +51,32 @@ export const BookPage = ({opened, setOpen, open}) => {
         // setImage(bookimage)
     }
     
-    const picture =''
-    // console.log(image);
+    // document.addEventListener('touchstart', handleTouchStart, false)
+    // document.addEventListener('touchmove', handleTouchMove, false)
+    // let x1 = null
+    // function handleTouchStart(event) {
+    //     x1 = event.touches[0].clientX
+    // }
 
+    // const [count, setCount] = useState(null)
+    // // setSwipe(null)
+    // function handleTouchMove(event) {
+    //     // let count = 0
+    //     if(!x1) {
+    //         return false
+    //     }
+    //     const x2 = event.touches[0].clientX
+    //     if((x2 - x1) > 0) {
+    //         setCount(count+1)
+    //         x1 = null
+    //         return count
+    //     }
+    //     setCount(count-1)
+
+    //     x1 = null
+    //     return count
+    // }
+    // console.log(count);
     
     return (
         <div>
@@ -66,10 +92,10 @@ export const BookPage = ({opened, setOpen, open}) => {
             <div className='book-page'>
                 <div className="book-main">
                     <div className="book-image">
-                        <img src={image} alt=''/>
-                        <div className="image-block">
+                        <img className="test" src={image} alt=''/>
+                        <div className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image-block" : 'image-block closed'}>
                             {/* {App(params.id-1, img)} */}
-                            <App id={params.id-1} image={img} changeImage={image => setImage(image)} className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image open" : 'image closed' }/>
+                            {document.body.clientWidth > 768 ? <App id={params.id-1} image={img} changeImage={image => setImage(image)}  /> : <NoImage id={params.id-1} image={img} changeImage={image => setImage(image)} />}
                         </div>
                     </div>
                     <div className="about">
