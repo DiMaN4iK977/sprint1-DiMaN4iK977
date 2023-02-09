@@ -1,37 +1,24 @@
 import React, { useState } from 'react'
 import { BookData } from '../../data/bookdata'
 import './book-page.css'
-import bookimage from '../../pictures/image (5).png'
 
-
-// export const ImageBlock = ({id}) => {
-
-    export function App({id, image, changeImage}) {  
+export function App({id, image, changeImage, swipe}) {  
     
-    // updateData(image)
     
     const [appState, changeState] = useState({
         activeObject: image,
         objects: BookData[id].image
     })
 
-    // changeImage(appState.activeObject)
-    // useEffect(() => {
-        // console.log(appState.activeObject.url);
-
     if(image.url) {
         changeImage(appState.activeObject.url)
     } else {
         changeImage(appState.activeObject)
     }
-    // //   }, []);
     
-    // const updateImage = ()
-    // console.log(appState.activeObject);
         
     function toggleActive(id) {
         changeState({...appState, activeObject: appState.objects[id]})
-        // updateData(appState.activeObject)
     }
 
     function toggleActiveStyles(id) {
@@ -42,7 +29,6 @@ import bookimage from '../../pictures/image (5).png'
     }
 
     if(BookData[id].image === undefined) {
-        // return <img src={bookimage} alt="img" />
         return ''
     }
 
@@ -58,6 +44,7 @@ import bookimage from '../../pictures/image (5).png'
                 }}
                 >
                     <img src={e.url} alt="img" />
+                    {/* <div className={toggleActiveStyles(e.id-1)}/> */}
                 </div>
             ))}
         </div>
