@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.book-image {
+    height: 100%;
+}
+
 .icon {
     width: 24px;
     height: 24px;
@@ -68,7 +72,6 @@
     color: #363636;
     font-size: 18px;
     font-weight: 700;
-    margin-top: 62px;
     line-height: 24px;
     display: none;
 }
@@ -259,48 +262,46 @@
     gap: 30px;
     width: 445px;
     padding: 2px;
-    margin-top: 17px;
+}
+
+.image-click {
     overflow-x: scroll;
-}
-
-.image-block > div {
+    width: 445px;
     cursor: pointer;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
-    gap: 32px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    margin-top: 17px;
+    gap: 32px;  
+    padding-bottom: 10px;
 }
 
-.image-block::-webkit-scrollbar{
+.image-click::-webkit-scrollbar{
     height: 10px;
 }
 
-.image-block::-webkit-scrollbar-track {
+.image-click::-webkit-scrollbar-track {
     border-radius: 10px;
     background: #f1f1f1;
   }
 
-.image-block::-webkit-scrollbar-thumb {
+.image-click::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
     /* width: 10px; */
   }
 
-.image-block::-webkit-scrollbar-thumb:hover {
+.image-click::-webkit-scrollbar-thumb:hover {
     background: #A7A7A7;
 }
 
-
-.book-image {
-    width: 445px;
-    /* height: 696px; */
-}
-
-.book-image > img {
+.test {
     /* height: 100%; */
     height: 593px;
-    width: 100%;
+    border-radius: 10px;
+    /* width: 100%; */
+    width: 445px;
+    border: 2px solid #363636;
+
 }
 
 .images > img {
@@ -316,8 +317,8 @@
 
 .images {
     border: 1px solid transparent;
-    width: 60px;
-    /* width: 100%; */
+    min-width: 60px;
+    border-radius: 3px;
 }
 
 .image-block.closed {
@@ -325,14 +326,33 @@
 }
 
 
+/* .circle {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+.book-image > div {
+    width: 136px;
+    height: 100%;
+}
+
+
+
+.about > .test-button {
+    margin-bottom: 0;
+} */
+
 @media screen and (max-width: 768px) {
-    .div > img {
+    .book-image > img {
         width: 136px;
         height: 198px;
     }
 
     .name-book {
-        font-size: 24px;
+        font-size: 20px;
+        line-height: 28px;
     }
 
     .about {
@@ -356,8 +376,8 @@
     }
 
     .test-button {
-        /* max-width: 100%; */
-        width: 306px;
+        width: 100%;
+        /* width: 306px; */
     }
 
     
@@ -406,19 +426,31 @@
     }
     
 
-    .image-block > div {
+    /* .image-block > div {
         border: none;
         gap: 4px;
         margin-top: 16px;
-    }
-
-    .book-image > img {
-        height: 85%;
-        /* width: auto; */
-    }
+    } */
 
     .image-block::-webkit-scrollbar{
         height: 0;
+    }
+
+    .group {
+        width: 100%;
+    }
+
+    .table {
+        display: block;
+    }
+
+    .author {
+        font-size: 14px;
+        margin-bottom: 42px;
+    }
+
+    .book-list {
+        font-size: 14px;
     }
 }
 
@@ -426,6 +458,13 @@
 @media screen and (max-width :320px) {
     .book-main {
         display: block;
+    }
+
+    .name-book {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: .1px;
+        margin-bottom: 8px;
     }
 
     .book-list {
@@ -437,17 +476,12 @@
         height: 12px;
     }
 
-    .name-book {
-        font-size: 18px;
-        line-height: 28px;
-        letter-spacing: .1px;
-        margin-bottom: 8px;
-    }
-
     .author {
         font-size: 12px;
         margin-bottom: 42px;
     }
+
+    
 
     .test-button {
         width: 100%;
@@ -486,13 +520,9 @@
         font-size: 12px;
     }
 
-    .group {
-        width: 100%;
-    }
+   
 
-    .table {
-        display: block;
-    }
+    
 
     .testimonials-block {
         font-size: 15px;
@@ -507,7 +537,7 @@
         display: block;
     }
 
-    .book-image {
+    .book-image > img{
         width: 188px;
         height: 260px;
         margin: 0 auto;

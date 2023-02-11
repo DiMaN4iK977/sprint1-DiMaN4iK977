@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 import { BookData } from '../../data/bookdata'
 import './book-page.css'
+import bookimage from '../../pictures/image (5).png'
 
-export function App({id, image, changeImage, swipe}) {  
+
+export function App({id, img, changeImage, swipe}) {  
     
     
+    
+    
+
+    // if(image.url) {
+    //     changeImage(appState.activeObject.url)
+    // } else {
+    //     changeImage(appState.activeObject)
+    // }
     const [appState, changeState] = useState({
-        activeObject: image,
+        activeObject: img,
         objects: BookData[id].image
     })
 
-    if(image.url) {
-        changeImage(appState.activeObject.url)
-    } else {
-        changeImage(appState.activeObject)
-    }
-    
-        
     function toggleActive(id) {
         changeState({...appState, activeObject: appState.objects[id]})
     }
@@ -29,13 +32,19 @@ export function App({id, image, changeImage, swipe}) {
     }
 
     if(BookData[id].image === undefined) {
-        return ''
+        return <img src={bookimage} alt="img" />
     }
 
+    if(BookData[id].image && BookData[id].image[0] === '/') {
+        return <img src={img} alt="img" />
+    }
+ 
     if(BookData[id].image && BookData[id].image[0] !== '/') {    
 
     return (
         <div>
+        <img className="test" src={appState.activeObject.url} alt=''/>
+        <div className='image-click'>
             {appState.objects.map(e => (
                 <div key={e.id} role='button' tabIndex={0} onKeyDown={() => {}}
                 className={toggleActiveStyles(e.id-1)}
@@ -47,6 +56,7 @@ export function App({id, image, changeImage, swipe}) {
                     {/* <div className={toggleActiveStyles(e.id-1)}/> */}
                 </div>
             ))}
+        </div>
         </div>
     )
 }

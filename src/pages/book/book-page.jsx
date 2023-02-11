@@ -14,9 +14,9 @@ import { MyFooter } from "../../components/footer/footer";
 import { Typebar } from "../../components/typebar/typebar";
 import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
-import bookimage from '../../pictures/image (5).png'
 import { App } from "./imageblock";
-import { NoImage } from "./noimage";
+import bookimage from '../../pictures/image (5).png'
+import { Slider } from "./slider/slider";
 
 
 
@@ -92,10 +92,9 @@ export const BookPage = ({opened, setOpen, open}) => {
             <div className='book-page'>
                 <div className="book-main">
                     <div className="book-image">
-                        <img className="test" src={image} alt=''/>
-                        <div className={(BookData[params.id-1].image && BookData[params.id-1].image[0] !== '/') ? "image-block" : 'image-block closed'}>
+                        <div className= "image-block">
                             {/* {App(params.id-1, img)} */}
-                            {document.body.clientWidth > 768 ? <App id={params.id-1} image={img} changeImage={image => setImage(image)}  /> : <NoImage id={params.id-1} image={img} changeImage={image => setImage(image)} />}
+                            {document.body.clientWidth > 768 ? <App id={params.id-1} img={img} changeImage={image => setImage(image)}  /> : <Slider id={params.id-1}/>}
                         </div>
                     </div>
                     <div className="about">
