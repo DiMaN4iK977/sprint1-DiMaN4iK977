@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect, useMemo } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import './content.css'
@@ -12,13 +12,31 @@ import { List } from '../booklist/list'
 import buttontable from '../../pictures/button icon (2).png'
 import buttonlist from '../../pictures/button icon (3).png'
 import Crist from '../../pictures/Icon_Action (3).png'
+import { Context } from '../../data/context';
+import { getBook } from '../../http/bookapi';
 
 
 export const Content = ({list, setList}) => {
     const [open, setOpen] = useState(true)
+    const [bookData, setBookData] = useState([])
+    // console.log(bookData);
+    // const value = useMemo(() => ({
+    //     bookData, setBookData
+    // }), [bookData]);
+    // const value = bookData
+
+    useEffect(() => {
+        getBook().then(data => setBookData(data.data));
+    }, [])
+
+    // console.log(bookData);
+
+   
 
     return (
+    <Context.Provider value={bookData}>
         <div className='content'>
+
             <div className='navBar'>
                 <div className='utils'>
                     <div className={open ? 'search' : 'search open'}>
@@ -38,5 +56,6 @@ export const Content = ({list, setList}) => {
             </div>
                {list ? <Booktable/> : <List/>}
     </div>
+    </Context.Provider>
 )
    }

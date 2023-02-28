@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Content } from '../../components/content/content';
 import { Root } from '../../components/root/root';
@@ -31,7 +31,7 @@ return (
                     <Route path='/contract' element={<Contract/>}/>
                     <Route path='*'  element={<Navigate to='books/all'/>} />
                 </Route>
-                <Route path='/books/:categories/:id' element={<BookPage open={open} setOpen={setOpen} opened={opened}/>}/>  
+                {/* <Route path='/books/:categories/:id' element={<BookPage open={open} setOpen={setOpen} opened={opened}/>}/>   */}
             </Route>
         </Routes>
     </div>

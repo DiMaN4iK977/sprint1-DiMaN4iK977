@@ -2,7 +2,7 @@ import { useLocation, useParams } from "react-router-dom"
 import { useState } from "react";
 
 import { MyHeader } from "../../components/header/header";
-import { BookData } from "../../data/bookdata";
+// import { BookData } from "../../data/bookdata";
 import './book-page.css'
 import Icon from '../../pictures/Icon_Chevron.png'
 // import bookimage from '../../pictures/image (3).png'
@@ -22,6 +22,7 @@ import { Slider } from "./slider/slider";
 
 export const BookPage = ({opened, setOpen, open}) => {
     const params = useParams()
+    const BookData = []
     // console.log(Icon);
     // console.log(BookData[params.id]);
     // const book = {id: 1, name: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих', author: 'Адитья Бхаргава, 2019' , star: 'еще нет оценок', image: <img className="img" src={bookimage} alt='img'/>}

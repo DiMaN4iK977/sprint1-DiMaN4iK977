@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BookData } from '../../data/bookdata'
+// import { BookData } from '../../data/bookdata'
 import './book-page.css'
 import bookimage from '../../pictures/image (5).png'
 
@@ -7,7 +7,7 @@ import bookimage from '../../pictures/image (5).png'
 export function App({id, img, changeImage, swipe}) {  
     
     
-    
+    const BookData = []
     
 
     // if(image.url) {

@@ -4,11 +4,13 @@ import React, { useEffect, useState, createContext, useMemo } from "react";
 // import { getImages } from "../../../imagesApi";
 import './slider.css'
 
-import { BookData } from "../../../data/bookdata";
+// import { BookData } from "../../../data/bookdata";
 import { Dots } from "./dots";
 // export const SliderContext = createContext();
 
 export function Slider({ id }) {
+  const BookData = []
+
   const [items, setItems] = useState(BookData[id].image);
   const [slide, setSlide] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null)
