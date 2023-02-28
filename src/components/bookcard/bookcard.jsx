@@ -1,10 +1,16 @@
-import React from 'react'
+import { useContext } from 'react'
+// import React from 'react'
 import { BookItem } from './bookitem'
-import { BookData } from '../../data/bookdata'
+import { Context } from '../../data/context'
+// import { BookData } from '../../data/bookdata'
 
-export const BookCard = () => (
-    BookData.map(item => (
+export const BookCard = () => {
+    const bookData = useContext(Context)
+    // console.log(bookData);
+    return (
+    bookData.map(item => (
         <BookItem key={item.id} item={item} />
         )
     )
 )
+}
