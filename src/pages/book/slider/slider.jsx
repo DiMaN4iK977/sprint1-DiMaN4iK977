@@ -1,34 +1,23 @@
 
-import React, { useEffect, useState, createContext, useMemo } from "react";
+import React, { useEffect, useState, createContext, useMemo, useContext } from "react";
 // import PropTypes from "prop-types";
 // import { getImages } from "../../../imagesApi";
 import './slider.css'
-
+import { Context } from "../../../data/context";
 // import { BookData } from "../../../data/bookdata";
 import { Dots } from "./dots";
+import dummy from '../../../pictures/booksImage/dummy.png'
 // export const SliderContext = createContext();
 
-export function Slider({ id }) {
-  const BookData = []
-
-  const [items, setItems] = useState(BookData[id].image);
+export function Slider({items}) {
+  // const BookData = []
+  // const BookData = useContext(Context)
+  // const {items} = useContext(Context)
   const [slide, setSlide] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null)
-
-
-  // console.log(items);
-  // useEffect(() => {
-  //   const loadData = async () => {
-  //     const images = await getImages();
-  //     setItems(images);
-  //   };
-  //   loadData();
-  // }, []);
-    
-  // useEffect((id) => {
-  // }, [])
-  // console.log(BookData[id].image);
+  
   const [activeNumber, setActiveNumber] = useState(0)
+
   const changeSlide = (direction = 1) => {
     let slideNumber = 0;
     if (slide + direction < 0) {
@@ -69,8 +58,8 @@ export function Slider({ id }) {
 
     setTouchPosition(null);
   }
-
-
+  if(items.length > 1) {
+    
   return (
     <div
       className="slider"
@@ -81,14 +70,22 @@ export function Slider({ id }) {
         <div className="slide-list" style={{ transform: `translateX(-${slide * 100}%)` }}>
             {items.map((slide) => (
                 // <Slide key={index} data={slide} />
-                <div className="slide" key={slide.id}>
-                    <img  className="slide-image" src={slide.url} alt=''/>
-                   
-                
+                <div className="slide" key={slide}>
+                    <img  className="slide-image" src={`http://localhost:5000/${slide}`} alt=''/>                
                </div>
             ))}
         </div>
           <Dots slideNumber={activeNumber}  slidesCount={items.length}/>
     </div>
   );
+            } return (  
+              <div className="slider">
+                <div className="slide-list">
+                  <div className="slide" >
+                    <img  className="slide-image" src={items[0] === dummy ? dummy : `http://localhost:5000/${items}`} alt=''/>
+                  </div>
+                </div>
+              </div>
+              
+            )
 };

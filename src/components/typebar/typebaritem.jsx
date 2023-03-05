@@ -1,42 +1,60 @@
+import { useContext, useState, useMemo, useEffect } from 'react'
 import '../content/content.css'
 import { NavLink, useLocation, useParams} from 'react-router-dom'
 import toggleBtn from '../../pictures/Vector (Stroke).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (1).png'
+import { Context } from '../../data/context'
+import { fetchBranch } from '../../http/branchapi'
+import { Subsection } from './subsection'
 
-export function TypebarItem({item, open, setOpen, param}) {
-    // console.log(`books/${param.category ? param.category : 'all'}`);
-    // const lol = `books/${param.category ? param.category : 'all'}`
-    // console.log(lol);
+export function TypebarItem({item}) {
+
+    const {setActiveCategory} = useContext(Context)
+    const [open, setOpen] = useState(false)
+
+    const [branches, setBranches] = useState([])
+
+    useEffect(() => {
+        fetchBranch(item.id).then(data => {
+            setBranches(data.data)
+        })
+    }, [item.id])  
+
     const location = useLocation()
     let current = ''
     if( location.pathname === '/root/' || location.pathname === '/contract') {
-        current = '/books'
-    } else {
+        current = '/books/all'
+        setTimeout(() => {
+            setActiveCategory(1)
+        }, 0)
+    }  else {
         current = location.pathname
     }
 
-    if(item.children) { 
-        return (
-        <div>
-                    <div className='category'>
-                    <NavLink className="category-book" to={current} key={item.id}>{item.name}
-                        <div role='button' tabIndex={0} onClick={() => setOpen(!open)} onKeyDown={() => {}}>                    
-                            <img src={open ? toggleBtnDown : toggleBtn} alt='img'/>
-                            </div>
-                    </NavLink>
-                    </div>
-                        <div className={open ? "category-many open" : "category-many"}>
-                            {item.children.map(child => (
-                                <TypebarItem open={open} setOpen={setOpen} key={child.id} item={child} /> 
-                            ))} 
-                        </div>
+    if(branches.length > 0) {
+    return (
+    <div>
+        <div className='category'>
+            <NavLink className="category-book" to={current} key={item.id}>{item.name}                         
+                <div role='button' tabIndex={0} onClick={() => setOpen(!open)} onKeyDown={() => {}}>                    
+                    <img src={open ? toggleBtnDown : toggleBtn} alt='img'/>
+                </div>
+            </NavLink>
+            <div className={open ? "category-many open" : "category-many"}>
+                {branches.map(child => (
+                    <NavLink to={child.path} onClick={() => setActiveCategory(child.id)} key={child.id} className='category-book'>
+                        <Subsection child={child} />
+                    </NavLink>  
+                ))} 
+            </div>
         </div>
-        )              
-    }
-        return (
-                <NavLink to={item.path} key={item.id} className='category-book'>
-                    <span className='category-name'>{item.name}</span>
-                    <span className='count'>{item.count}</span>
-                </NavLink>  
-        )
+    </div>
+    )
+    } return (
+        <div>
+        <div className='category'>
+            <NavLink className="category-book" to={item.path} key={item.id}>{item.name}</NavLink>
+        </div>
+    </div>
+    )
 }

@@ -4,9 +4,10 @@ import { Context } from '../../data/context'
 import { BookListItem } from './booklistitem'
 
 export const Booklist = () => {
-    const bookData = useContext(Context)
+    const {BooksData} = useContext(Context)
+    
     return (
-    bookData.map(item => (
+    BooksData.map(item => (
         <BookListItem key={item.id} item={item} />
         )
     )

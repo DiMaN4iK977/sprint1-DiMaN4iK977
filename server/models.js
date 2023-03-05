@@ -17,7 +17,7 @@ const Book = sequelize.define('book', {
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     author: {type: DataTypes.STRING, allowNull: false},
     rate: {type: DataTypes.INTEGER, defaultValue: 0, allowNull: false},
-    images: {type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: [],  allowNull: false},
+    images: {type: DataTypes.TEXT, defaultValue: '',  allowNull: false}
 })
 
 const Categories = sequelize.define('categories', {
@@ -30,6 +30,7 @@ const Branch = sequelize.define('branch', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     path: {type: DataTypes.STRING, unique: true, allowNull: false},
+    // count: {type: DataTypes.INTEGER, defaultValue: 0, allowNull: false},
 })
 
 const Raiting = sequelize.define('raiting', {
@@ -49,7 +50,7 @@ Raiting.belongsTo(User)
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
-Book.hasMany(BookInfo)
+Book.hasMany(BookInfo, {as: 'info'})
 BookInfo.belongsTo(Book)
 
 Categories.hasMany(Branch)

@@ -1,9 +1,13 @@
+const { where } = require('sequelize')
 const {Branch} = require('../models')
 
 
 class BranchController {
     async getAll(req, res) {
-        const categoryAll = await Branch.findAll()
+        const {categoryId} = req.query
+        const categoryAll = await Branch.findAll({
+            where: {categoryId}
+    })
         return res.json(categoryAll) 
     }
 

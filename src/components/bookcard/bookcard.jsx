@@ -5,10 +5,11 @@ import { Context } from '../../data/context'
 // import { BookData } from '../../data/bookdata'
 
 export const BookCard = () => {
-    const bookData = useContext(Context)
-    // console.log(bookData);
+    const {BooksData} = useContext(Context)
+    // const {pictures} = useContext(Context)
+    // const books = BooksData.rows
     return (
-    bookData.map(item => (
+    BooksData.map(item => (
         <BookItem key={item.id} item={item} />
         )
     )

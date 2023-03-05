@@ -3,7 +3,7 @@ import React from 'react'
 import { Typebar } from '../../components/typebar/typebar';
 
 export const LayoutMain = ({opened, setOpen, open}) => (
-    <div >
+
         <div className='book-container'>
             <div className={opened ? 'menu' : 'menu opened'}>
                 <Typebar open={open} setOpen={setOpen} />
@@ -15,5 +15,5 @@ export const LayoutMain = ({opened, setOpen, open}) => (
         <Outlet/>
 
         </div>
-    </div>
+   
 )

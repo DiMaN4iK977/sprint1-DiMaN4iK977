@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router-dom"
-import { useState } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 
 import { MyHeader } from "../../components/header/header";
 // import { BookData } from "../../data/bookdata";
@@ -15,71 +15,45 @@ import { Typebar } from "../../components/typebar/typebar";
 import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
 import { App } from "./imageblock";
-import bookimage from '../../pictures/image (5).png'
 import { Slider } from "./slider/slider";
-
-
+import { Context } from "../../data/context";
+import { getOne } from "../../http/bookapi";
+import { getImages } from ".";
 
 export const BookPage = ({opened, setOpen, open}) => {
     const params = useParams()
-    const BookData = []
-    // console.log(Icon);
+    // const BookData = useContext(Context)
+
+    
+    // console.log(BookData);
     // console.log(BookData[params.id]);
     // const book = {id: 1, name: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих', author: 'Адитья Бхаргава, 2019' , star: 'еще нет оценок', image: <img className="img" src={bookimage} alt='img'/>}
     const discription = 'Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время? Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.'
     const userDescription = 'Учитывая ключевые сценарии поведения, курс на социально-ориентированный национальный проект не оставляет шанса для анализа существующих паттернов поведения. Для современного мира внедрение современных методик предоставляет широкие возможности для позиций, занимаемых участниками в отношении поставленных задач. Как уже неоднократно упомянуто, сделанные на базе интернет-аналитики выводы будут в равной степени предоставлены сами себе. Вот вам яркий пример современных тенденций — глубокий уровень погружения создаёт предпосылки для своевременного выполнения сверхзадачи. И нет сомнений, что акционеры крупнейших компаний, инициированные исключительно синтетически, превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.'
     
-    const booklist = `Бизнес книги / ${BookData[params.id-1].name}`
-    // console.log(BookData[params.id-1].image);
-    // console.log(Ob);
+    // const booklist = `Бизнес книги / ${BookData.name}`
+
+
     const [open2, setOpen2] = useState(true) 
-    // console.log(images);
-    const [image, setImage] = useState('')
-    // const [image, setImage] = useState('')
+    const [items, setItems] = useState([]);
+    
+    const [BookData, setBookData] = useState({})
 
-
-    // console.log(document.body.clientWidth);
-
-    let img = ''
-    if(BookData[params.id-1].image === undefined) {
-        img = bookimage
-        // setImage(bookimage)
-    } else 
-    if(BookData[params.id-1].image[0] !== '/' && BookData[params.id-1].image) {
-        [img] = BookData[params.id-1].image
-    } else {
-        img =  BookData[params.id-1].image
-        // setImage(bookimage)
+   
+    useEffect(() => {
+        getOne(params.id).then(data => {
+            setBookData(data.data)
+            setItems(JSON.parse(data.data.images))
     }
+    );
+    }, [params.id])
     
-    // document.addEventListener('touchstart', handleTouchStart, false)
-    // document.addEventListener('touchmove', handleTouchMove, false)
-    // let x1 = null
-    // function handleTouchStart(event) {
-    //     x1 = event.touches[0].clientX
-    // }
+    const value = useMemo(() => ({
+        BookData
+    }), [BookData])
 
-    // const [count, setCount] = useState(null)
-    // // setSwipe(null)
-    // function handleTouchMove(event) {
-    //     // let count = 0
-    //     if(!x1) {
-    //         return false
-    //     }
-    //     const x2 = event.touches[0].clientX
-    //     if((x2 - x1) > 0) {
-    //         setCount(count+1)
-    //         x1 = null
-    //         return count
-    //     }
-    //     setCount(count-1)
-
-    //     x1 = null
-    //     return count
-    // }
-    // console.log(count);
-    
     return (
+    <Context.Provider value={value}>
         <div>
             <div className={opened ? 'menus' : 'menu opened'}>
                 <Typebar open={open} setOpen={setOpen} />
@@ -89,18 +63,15 @@ export const BookPage = ({opened, setOpen, open}) => {
                 </div>
             </div>
             
-            <div className="book-list">{booklist}</div>    
+            <div className="book-list">{`Бизнес книги / ${BookData.name}`}</div>    
             <div className='book-page'>
                 <div className="book-main">
-                    <div className="book-image">
-                        <div className= "image-block">
-                            {/* {App(params.id-1, img)} */}
-                            {document.body.clientWidth > 768 ? <App id={params.id-1} img={img} changeImage={image => setImage(image)}  /> : <Slider id={params.id-1}/>}
-                        </div>
-                    </div>
+                    {/* <div className="book-image"> */}
+                            {/* {document.body.clientWidth > 768 ? <App value={BookData.images} /> : <Slider items={items}/>}                             */}
+                    {/* </div> */}
                     <div className="about">
-                        <div className="name-book">{BookData[params.id-1].name}</div>
-                        <div className="author">{BookData[params.id-1].author}</div>
+                        <div className="name-book">{BookData.name}</div>
+                        <div className="author">{BookData.author}</div>
                         <button className='test-button' type='button' >Забронировать</button> 
                         <div className="discription">О книге
                             <div className="first-part">{discription}</div>
@@ -203,6 +174,7 @@ export const BookPage = ({opened, setOpen, open}) => {
             </div>
             {/* <MyFooter /> */}
         </div>
+        </Context.Provider>
 
     
     )

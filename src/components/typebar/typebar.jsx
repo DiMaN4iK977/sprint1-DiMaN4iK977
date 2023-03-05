@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { categoriesData } from '../../data/typebardata'
+import { Context } from '../../data/context'
+// import { categoriesData } from '../../data/typebardata'
 import '../content/content.css'
 import { TypebarItem } from './typebaritem'
 
-export const Typebar = ({open, setOpen}) => {
-  const param =useParams()
-  
- return (
-            categoriesData.map(item => (
-                    <TypebarItem param={param} open={open} setOpen={setOpen} key={item.id} item={item} />
-                    )
-  )
+export const Typebar = () => {
+  const {CategoriesData} = useContext(Context)
+  // const [branches, setBranches] = useState([])
+ if(CategoriesData !== undefined) {
+  return (
+    CategoriesData.map(item => (
+            <TypebarItem key={item.id} item={item}/>
+            )
 )
-            }
+)
+ } return <div>a</div>
+}
