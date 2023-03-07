@@ -11,12 +11,12 @@ export const BookListItem = ({item}) => {
     return (
     <NavLink to={`${location.pathname}/${item.id}`} className='booklist-item'>
          <div className='listwrapper'>
-            <div className='booklist-image'><img src={`http://localhost:5000/${getImages(item)[0]}`} alt=''/></div>
+            {/* <div className='booklist-image'><img src={`http://localhost:5000/${getImages(item)[0]}`} alt=''/></div> */}
             <div className='booklist-content'>
                 <div className='booklist-name'>{item.name}</div>
                 <div className='booklist-author'>{item.author}</div>
                 <div className='bottom'>
-                    <div className="booklist-star">{item.star}</div>
+                    <div className="booklist-star">{item.rate}</div>
                     <MyButton/>
                 </div>
             </div>

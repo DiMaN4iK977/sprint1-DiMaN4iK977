@@ -16,12 +16,15 @@ import toggleBtn from '../../pictures/Vector (Stroke) (3).png'
 import toggleBtnDown from '../../pictures/Vector (Stroke) (4).png'
 import { App } from "./imageblock";
 import { Slider } from "./slider/slider";
-import { Context } from "../../data/context";
+import { Context, SecondContext } from "../../data/context";
 import { getOne } from "../../http/bookapi";
 import { getImages } from ".";
 
-export const BookPage = ({opened, setOpen, open}) => {
+
+export const BookPage = () => {
     const params = useParams()
+    const {opened, setOpened} = useContext(Context)
+    // setOpened(!false)
     // const BookData = useContext(Context)
 
     
@@ -43,7 +46,7 @@ export const BookPage = ({opened, setOpen, open}) => {
     useEffect(() => {
         getOne(params.id).then(data => {
             setBookData(data.data)
-            setItems(JSON.parse(data.data.images))
+            // setItems(JSON.parse(data.data.images))
     }
     );
     }, [params.id])
@@ -53,10 +56,10 @@ export const BookPage = ({opened, setOpen, open}) => {
     }), [BookData])
 
     return (
-    <Context.Provider value={value}>
+    <SecondContext.Provider value={value}>
         <div>
             <div className={opened ? 'menus' : 'menu opened'}>
-                <Typebar open={open} setOpen={setOpen} />
+                <Typebar/>
                 <div className='menu-for-divices'>
                     <div className='profile'>Профиль</div>
                     <div className='in-out'>Выход</div>
@@ -174,7 +177,7 @@ export const BookPage = ({opened, setOpen, open}) => {
             </div>
             {/* <MyFooter /> */}
         </div>
-        </Context.Provider>
+        </SecondContext.Provider>
 
     
     )
