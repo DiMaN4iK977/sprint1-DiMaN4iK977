@@ -17,7 +17,8 @@ const Book = sequelize.define('book', {
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     author: {type: DataTypes.STRING, allowNull: false},
     rate: {type: DataTypes.INTEGER, defaultValue: 0, allowNull: false},
-    images: {type: DataTypes.TEXT, defaultValue: '',  allowNull: false}
+    images: {type: DataTypes.TEXT, defaultValue: '',  allowNull: false},
+    about: {type: DataTypes.TEXT, allowNull: false}
 })
 
 const Categories = sequelize.define('categories', {

@@ -6,6 +6,10 @@
    
   }
 
+  .book-container {
+    margin-top: 47px;
+  }
+
   .container > div {
     min-height: 100%;
     display: flex;

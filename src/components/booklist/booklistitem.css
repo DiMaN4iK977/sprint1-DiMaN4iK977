@@ -57,9 +57,10 @@
     /* margin-bottom: 22px; */
     color: #a7a7a7;
     height: 24px;
+    display: flex;
 }
 
-.booklist-star > div {
+.booklist-star {
     gap: 6px;
     display: flex;
     align-items: center;

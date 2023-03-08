@@ -7,8 +7,6 @@ import './book-page.css'
 import Icon from '../../pictures/Icon_Chevron.png'
 // import bookimage from '../../pictures/image (3).png'
 import { MyButton } from "../../components/bookcard/button";
-import iconStar from '../../pictures/Star 1 (2).png'
-import Star from '../../pictures/Star 1.png'
 import UserAvatar from '../../pictures/Ellipse 10.png'
 import { MyFooter } from "../../components/footer/footer";
 import { Typebar } from "../../components/typebar/typebar";
@@ -18,8 +16,10 @@ import { App } from "./imageblock";
 import { Slider } from "./slider/slider";
 import { Context, SecondContext } from "../../data/context";
 import { getOne } from "../../http/bookapi";
-import { getImages } from ".";
-
+import { setStars } from ".";
+import iconStar from '../../pictures/Star 1 (2).png'
+import Star from '../../pictures/Star 1.png'
+import { Image } from "../../components/content/image";
 
 export const BookPage = () => {
     const params = useParams()
@@ -31,7 +31,6 @@ export const BookPage = () => {
     // console.log(BookData);
     // console.log(BookData[params.id]);
     // const book = {id: 1, name: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих', author: 'Адитья Бхаргава, 2019' , star: 'еще нет оценок', image: <img className="img" src={bookimage} alt='img'/>}
-    const discription = 'Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время? Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.'
     const userDescription = 'Учитывая ключевые сценарии поведения, курс на социально-ориентированный национальный проект не оставляет шанса для анализа существующих паттернов поведения. Для современного мира внедрение современных методик предоставляет широкие возможности для позиций, занимаемых участниками в отношении поставленных задач. Как уже неоднократно упомянуто, сделанные на базе интернет-аналитики выводы будут в равной степени предоставлены сами себе. Вот вам яркий пример современных тенденций — глубокий уровень погружения создаёт предпосылки для своевременного выполнения сверхзадачи. И нет сомнений, что акционеры крупнейших компаний, инициированные исключительно синтетически, превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.'
     
     // const booklist = `Бизнес книги / ${BookData.name}`
@@ -58,7 +57,7 @@ export const BookPage = () => {
     return (
     <SecondContext.Provider value={value}>
         <div>
-            <div className={opened ? 'menus' : 'menu opened'}>
+            <div className={document.body.clientWidth > 768 ? 'menus' : opened ? 'menu' : 'menu opened'}>
                 <Typebar/>
                 <div className='menu-for-divices'>
                     <div className='profile'>Профиль</div>
@@ -77,20 +76,21 @@ export const BookPage = () => {
                         <div className="author">{BookData.author}</div>
                         <button className='test-button' type='button' >Забронировать</button> 
                         <div className="discription">О книге
-                            <div className="first-part">{discription}</div>
-                            <div className="secont-part">Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие</div>
+                            <div className="first-part">{BookData.about}</div>
+                            {/* <div className="secont-part">Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие</div> */}
                         </div>
                     </div>
                 </div>
-                <div className="discription2">О книге
+                {/* <div className="discription2">О книге
                             <div className="first-part">{discription}</div>
                             <div className="secont-part">Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие</div>
-                </div>
+                </div> */}
             <div className="book-content">
                 <div className="raiting">
                     <div className="book-title">Рейтинг</div>
-                    <div className="star"><img src={iconStar} alt='img'/><img src={iconStar} alt='img'/><img src={iconStar} alt='img'/><img src={iconStar} alt='img'/><img src={Star} alt='img'/>
-                    <div className="number">4.3</div>
+                    <div className="star">
+                        <Image rate={BookData.rate} />
+                        <div className={BookData.rate === 0 ? "text" : "number" }>{BookData.rate === 0 ? 'еще нет оценок' : BookData.rate}</div>
                     </div>
                 </div>
                 <div className="details">

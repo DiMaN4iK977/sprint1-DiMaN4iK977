@@ -3,7 +3,7 @@ import { useLocation, NavLink } from 'react-router-dom'
 import { MyButton } from '../bookcard/button'
 import './booklistitem.css'
 import dummy from '../../pictures/booksImage/dummy.png'
-import { getImages } from '../../pages/book'
+import { Image } from '../content/image'
 
 export const BookListItem = ({item}) => {
     const location = useLocation()
@@ -16,7 +16,7 @@ export const BookListItem = ({item}) => {
                 <div className='booklist-name'>{item.name}</div>
                 <div className='booklist-author'>{item.author}</div>
                 <div className='bottom'>
-                    <div className="booklist-star">{item.rate}</div>
+                    <div className="booklist-star">{item.rate === 0 ? 'еще нет оценок' : <Image rate={item.rate}/>}</div>
                     <MyButton/>
                 </div>
             </div>

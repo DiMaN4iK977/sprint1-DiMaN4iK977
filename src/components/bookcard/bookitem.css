@@ -52,7 +52,7 @@
     color: #a7a7a7;
 }
 
-.book-star > div {
+.book-star {
     display: flex;
     gap: 6px;
 }

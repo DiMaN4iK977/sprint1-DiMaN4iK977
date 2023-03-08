@@ -4,9 +4,9 @@ const {Branch} = require('../models')
 
 class BranchController {
     async getAll(req, res) {
-        const {categoryId} = req.query
+        // const {categoryId} = req.query
         const categoryAll = await Branch.findAll({
-            where: {categoryId}
+            // where: {categoryId}
     })
         return res.json(categoryAll) 
     }

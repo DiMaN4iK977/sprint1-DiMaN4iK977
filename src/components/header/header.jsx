@@ -16,7 +16,7 @@ export const MyHeader = () => {
     function setCategory(path) {
         if(path !== undefined) {
             const arr = path.pathname.split('/')
-            const str = path.pathname.slice(0, path.pathname.length - arr[arr.length -1 ].length)
+            const str = path.pathname.slice(0, path.pathname.length - arr[arr.length -1 ].length - 1)
             return str
         }
        return '/books/all'

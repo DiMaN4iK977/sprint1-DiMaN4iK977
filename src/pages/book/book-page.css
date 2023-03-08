@@ -102,7 +102,7 @@
 
 .star {
     display: flex;
-    width: 168px;
+    /* width: 168px; */
     /* justify-content: space-between; */
     align-items: center;
     margin-top: 20px;

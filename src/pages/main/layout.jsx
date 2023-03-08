@@ -8,13 +8,10 @@ import './main-page.css'
 import { Typebar } from '../../components/typebar/typebar';
 import { Context } from '../../data/context';
 
-export const Layout = () => {
-    const {opened, setOpened} = useContext(Context)
-    return(
+export const Layout = () => (
     <div >
-        <MyHeader state={opened} setState={setOpened}/>
+        <MyHeader/>
             <Outlet/>
         <MyFooter />
     </div>
   )
-}

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import { MainPage } from './pages/main';
+import { MainPage } from './pages/main/main-page';
 
 import './index.css';
 

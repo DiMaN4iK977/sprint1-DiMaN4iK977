@@ -9,16 +9,20 @@ import { Subsection } from './subsection'
 
 export function TypebarItem({item}) {
 
-    const {setActiveCategory, setOpened, opened} = useContext(Context)
+    const {setActiveCategory, setOpened, opened, activeCategory, branches} = useContext(Context)
     const [open, setOpen] = useState(false)
 
-    const [branches, setBranches] = useState([])
 
-    useEffect(() => {
-        fetchBranch(item.id).then(data => {
-            setBranches(data.data)
-        })
-    }, [item.id])  
+    // useEffect(() => {
+    //     fetchBranch(item.id).then(data => {
+    //         setBranches(data.data)
+    //         // console.log('render');
+    //     })
+    // }, [item.id])  
+
+    // const value = useMemo(() => ({
+    //     branches, item
+    // }), [branches, item])
 
     const location = useLocation()
     let current = ''
@@ -40,12 +44,13 @@ export function TypebarItem({item}) {
         } else {
             str = path.pathname
         }
-        let id = 1
+        // console.log(str);
+        let id = activeCategory
         branches.forEach(child => {
             if(child.path === str) {
                 id = child.id
             }
-    })
+        })
         return setTimeout(() => setActiveCategory(id),0)
     }
     // setTimeout(() => {
@@ -54,10 +59,11 @@ export function TypebarItem({item}) {
     // const check = (location) => {
     //     setActiveCategory(setCategory(location))
     // }
+    // console.log(value);
 
     setCategory(location)
-    // check(opened)
-    if(branches.length > 0) {
+    // console.log(open);
+    if(branches[0].categoryId === item.id) {
     return (
         <div className='category'>
             <NavLink className="category-book" to={current} key={item.id}>{item.name}                         

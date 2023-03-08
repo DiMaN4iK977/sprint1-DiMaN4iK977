@@ -36,21 +36,28 @@ class BookController {
 
     async getAll(req, res) {
         const {branchId} = req.query
-        const {images} = req.body
-        // console.log(Book);
-        if(images) {
-            images = JSON.parse(images)
-        }
+        // console.log(branchId);
+        // if(branchId & selectedItem) {
+
+        // }
+        
+        // if(branchId & selectedItem === 'Сортировать по...') {
+        //     let books
+        // if(branchId > 1) {
+        //     books = await Book.findAndCountAll({where: {branchId}})
+        // } else books = await Book.findAndCountAll()
+        // return res.json(books) 
+        // }
+        
         let books
         if(branchId > 1) {
             books = await Book.findAndCountAll({where: {branchId}})
         } else books = await Book.findAndCountAll()
-
         return res.json(books) 
     }
 
     async create(req, res) {
-        const {name, branchId, author, info} = req.body        
+        const {name, branchId, author, info, about} = req.body        
 
         if(req.files !== null) {
             let {img} = req.files
@@ -73,7 +80,7 @@ class BookController {
                 img.mv(path.resolve(__dirname, '..', 'static', filename))
             }
             // console.log(JSON.stringify(image));
-            const book = await Book.create({name, branchId, author, images: JSON.stringify(image)})
+            const book = await Book.create({name, branchId, author, about, images: JSON.stringify(image)})
 
             if(info) {
                 info = JSON.parse(info)
@@ -89,7 +96,7 @@ class BookController {
             return res.json(book)
         } 
         else {
-            const book = await Book.create({name, branchId, author})
+            const book = await Book.create({name, branchId, author, about})
 
             if(info) {
                 info = JSON.parse(info)

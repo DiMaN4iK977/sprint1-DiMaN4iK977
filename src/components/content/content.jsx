@@ -12,20 +12,27 @@ import { List } from '../booklist/list'
 import buttontable from '../../pictures/button icon (2).png'
 import buttonlist from '../../pictures/button icon (3).png'
 import Crist from '../../pictures/Icon_Action (3).png'
+import { Context } from '../../data/context'
 
 
 
 export const Content = ({list, setList}) => {
     const [open, setOpen] = useState(true)
+    const [select, setSelect] = useState(false)
+    const itemsSort = ['Рейтингу', 'Названию', "Автору"]
+    const {setSelectedItem, selectedItem} = useContext(Context)
     // console.log(bookData);
     // const value = useMemo(() => ({
     //     bookData, setBookData
     // }), [bookData]);
     // const value = bookData
-
    
     // console.log(bookData);
 
+    function set(item) {
+        setSelect(!select)
+        return setSelectedItem(item)
+    }
    
 
     return (
@@ -38,10 +45,17 @@ export const Content = ({list, setList}) => {
                         <input className={open ? 'search-txt': 'search-txt open'} inputMode='search' type='text' placeholder='Поиск книги или автора...' />
                         <div role='button' className={open ? 'button closed' : 'button'} tabIndex={0} onKeyDown={() => {}} onClick={() => setOpen(!open)}><img className='searchIcon' src={Crist} alt="img" /></div>
                     </div>
+                    <div>
                     <div className={open ? 'filter' : 'filter closed'}>
-                        <img className='filterIcon' src={iconAction2} alt="img" />
-                        <input className='filter-txt' type="text" placeholder='По рейтингу' />
+                        <div role='button' tabIndex={0} className='filterIcon' onKeyDown={() => {}} onClick={() => setSelect(!select)}><img  src={iconAction2} alt="img" />{selectedItem}</div>
+                        <ul className={select ? 'select-list opened' : 'select-list'}>
+                            {itemsSort.map(item => (
+                                <div onKeyDown={() => {}} tabIndex={0} role='button' onClick={() => set(item)}>{item}</div>
+                            ))}
+                        </ul>
+                        {/* <input className='filter-txt' type="text" placeholder='По рейтингу' /> */}
                     </div >
+                    </div>
                 </div>
                 <div>
                     <div className={open ? 'content-button' : 'content-button closed'} data-test-id='button-menu-view-window' role='button'onKeyDown={() => {}} tabIndex={0} onClick={() => setList(true)}><img src={list ? buttonIcon : buttontable} alt='img'/></div>

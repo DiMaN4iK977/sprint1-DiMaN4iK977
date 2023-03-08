@@ -18,7 +18,7 @@ const {CategoriesData} = useContext(Context)
  if(CategoriesData !== undefined) {
   return (
     CategoriesData.map(item => (
-            <TypebarItem key={item.id} item={item}/>
+            <TypebarItem  key={item.id} item={item}/>
             )
 )
 )
